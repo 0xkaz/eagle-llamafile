@@ -21,6 +21,24 @@
       "priority": 1
     },
     {
+      "id": "falcon-h1-7b-instruct",
+      "name": "Falcon-H1 7B Instruct",
+      "family": "falcon-h1",
+      "origin": "UAE (TII)",
+      "arch": "hybrid-mamba2-transformer",
+      "params": "7B",
+      "license": "Apache 2.0",
+      "hf_source": "tiiuae/Falcon-H1-7B-Instruct",
+      "gguf_available": true,
+      "gguf_source": "tiiuae/Falcon-H1-7B-Instruct-GGUF",
+      "llamafile": "models/falcon-h1-7b-Q4_K_M.llamafile",
+      "quant": "Q4_K_M",
+      "status": "done",
+      "verified_on": "2026-03-24",
+      "notes": "CPU推論OK。Metal GPU (M4 Pro以前)はMamba-2 SSM非対応でエラー。M5/A19以降必要。",
+      "priority": 2
+    },
+    {
       "id": "falcon-h1-34b-instruct",
       "name": "Falcon-H1 34B Instruct",
       "family": "falcon-h1",
@@ -30,10 +48,13 @@
       "license": "Apache 2.0",
       "hf_source": "tiiuae/Falcon-H1-34B-Instruct",
       "gguf_available": true,
-      "gguf_source": "tiiuae/",
-      "llamafile": null,
-      "status": "planned",
-      "priority": 2
+      "gguf_source": "tiiuae/Falcon-H1-34B-Instruct-GGUF",
+      "llamafile": "models/falcon-h1-34b-Q4_K_M.llamafile",
+      "quant": "Q4_K_M",
+      "status": "done",
+      "verified_on": "2026-03-24",
+      "notes": "CPUのみ動作確認済み(-ngl 0)。Metal GPU非対応（SSM Hybrid）かつ20GBのためOOMリスクあり。",
+      "priority": 3
     },
     {
       "id": "falcon-h1-arabic-7b",
@@ -47,8 +68,9 @@
       "gguf_available": false,
       "gguf_source": null,
       "llamafile": null,
-      "status": "planned",
-      "priority": 3
+      "status": "waiting",
+      "notes": "2026-03-24時点でGGUF未公開。TIIのリリース待ち。",
+      "priority": 4
     },
     {
       "id": "jais-13b-chat",
