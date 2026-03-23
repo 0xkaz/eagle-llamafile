@@ -3,18 +3,21 @@
   "updated": "2026-03-24",
   "models": [
     {
-      "id": "falcon-h1-7b-instruct",
-      "name": "Falcon-H1 7B Instruct",
+      "id": "falcon-h1r-7b-instruct",
+      "name": "Falcon-H1R 7B Instruct (Reasoning)",
       "family": "falcon-h1",
       "origin": "UAE (TII)",
       "arch": "hybrid-mamba2-transformer",
       "params": "7B",
       "license": "Apache 2.0",
-      "hf_source": "tiiuae/Falcon-H1-7B-Instruct",
+      "hf_source": "tiiuae/Falcon-H1R-7B-Instruct",
       "gguf_available": true,
       "gguf_source": "tiiuae/Falcon-H1R-7B-GGUF",
-      "llamafile": null,
-      "status": "planned",
+      "llamafile": "models/falcon-h1r-7b-Q4_K_M.llamafile",
+      "quant": "Q4_K_M",
+      "status": "done",
+      "verified_on": "2026-03-24",
+      "notes": "CPU推論OK。Metal GPU (M4 Pro以前)はOOM。M5/A19以降でGPU対応予定。",
       "priority": 1
     },
     {

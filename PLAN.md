@@ -208,10 +208,16 @@ Falcon-H1 を llamafile 化すると：
 
 **タスク：**
 - [x] リポジトリ骨格作成（`scripts/convert.sh`, `README.md`, `models/manifest.json`）
-- [ ] llama.cpp をビルドし Falcon-H1 GGUF の動作確認
-- [ ] llamafile ツールで Falcon-H1 7B Q4_K_M をバンドル
-- [ ] 動作テスト（macOS / Linux / Windows）
+- [x] llama.cpp をビルドし Falcon-H1R GGUF の動作確認（CPU 推論成功 / 2026-03-24）
+- [x] llamafile 0.10.0 で Falcon-H1R 7B Q4_K_M をバンドル（`models/falcon-h1r-7b-Q4_K_M.llamafile` / 5.0 GB）
+- [x] 動作テスト macOS CPU（正常）— GPU (Metal M4 Pro) は OOM のため CPU 専用
 - [ ] HuggingFace リポジトリに初回公開
+
+**判明した制約（2026-03-24）：**
+- Falcon-H1 の Mamba-2 SSM Metal カーネルは **M5 / A19 以降が必要**
+  - M4 Pro: `ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices`
+  - 回避策: `-ngl 0` または Metal 無効化（CPU のみで動作確認済み）
+- 埋め込みモデルの参照: llamafile 0.10.0 では `-m /zip/<gguf_filename>` が必要
 
 ### Phase 2 — UAE / Saudi コアモデルの網羅
 
