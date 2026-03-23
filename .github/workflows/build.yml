@@ -1,0 +1,69 @@
+name: Build llamafile
+
+on:
+  workflow_dispatch:
+    inputs:
+      hf_model_id:
+        description: 'HuggingFace model ID (e.g. tiiuae/Falcon3-7B-Instruct-GGUF)'
+        required: true
+      gguf_filename:
+        description: 'GGUF filename to download'
+        required: true
+      output_name:
+        description: 'Output llamafile name (without .llamafile)'
+        required: true
+      hf_upload_repo:
+        description: 'HuggingFace repo to upload to (e.g. kaz321/Falcon3-llamafile)'
+        required: false
+
+env:
+  LLAMAFILE_VERSION: '0.10.0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          pip install huggingface_hub
+
+      - name: Download llamafile binary
+        run: |
+          curl -fL "https://github.com/mozilla-ai/llamafile/releases/download/${{ env.LLAMAFILE_VERSION }}/llamafile-${{ env.LLAMAFILE_VERSION }}" -o llamafile
+          curl -fL "https://github.com/mozilla-ai/llamafile/releases/download/${{ env.LLAMAFILE_VERSION }}/zipalign-${{ env.LLAMAFILE_VERSION }}" -o zipalign
+          chmod +x llamafile zipalign
+
+      - name: Download GGUF from HuggingFace
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          huggingface-cli download "${{ inputs.hf_model_id }}" \
+            "${{ inputs.gguf_filename }}" \
+            --local-dir ./work/
+
+      - name: Bundle into llamafile
+        run: |
+          OUTPUT="${{ inputs.output_name }}.llamafile"
+          cp llamafile "$OUTPUT"
+          ./zipalign -j0 "$OUTPUT" "work/${{ inputs.gguf_filename }}"
+          chmod +x "$OUTPUT"
+          ls -lh "$OUTPUT"
+
+      - name: Upload to HuggingFace
+        if: ${{ inputs.hf_upload_repo != '' }}
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          huggingface-cli upload "${{ inputs.hf_upload_repo }}" \
+            "${{ inputs.output_name }}.llamafile" \
+            "${{ inputs.output_name }}.llamafile" \
+            --commit-message "Add ${{ inputs.output_name }} llamafile (CI build)"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.output_name }}
+          path: ${{ inputs.output_name }}.llamafile
+          retention-days: 3
