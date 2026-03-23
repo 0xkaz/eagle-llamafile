@@ -61,6 +61,19 @@
   --cli -p "ما هي عاصمة الإمارات؟" -n 100
 ```
 
+### Falcon3 1B / 3B / 7B Instruct（UAE TII製 Dense）
+
+```bash
+# 1B（最軽量・1.7 GB）
+./models/falcon3-1b-Q4_K_M.llamafile -m /zip/Falcon3-1B-Instruct-q4_k_m.gguf --cli -p "Your prompt" -n 100 --nothink
+
+# 3B（2.6 GB）
+./models/falcon3-3b-Q4_K_M.llamafile -m /zip/Falcon3-3B-Instruct-q4_k_m.gguf --cli -p "Your prompt" -n 100 --nothink
+
+# 7B（5.0 GB）
+./models/falcon3-7b-Q4_K_M.llamafile -m /zip/Falcon3-7B-Instruct-q4_k_m.gguf --cli -p "Your prompt" -n 100 --nothink
+```
+
 ### Jais Family 30B 16K（30B アラビア語-英語）
 
 ```bash
@@ -144,4 +157,7 @@ curl http://127.0.0.1:8080/v1/chat/completions \
 | `falcon-h1r-7b-Q4_K_M.llamafile` | 5.0 GB | Falcon-H1R 7B | Mamba-2+Transformer |
 | `jais-13b-Q4_K_M.llamafile` | 12.2 GB | Jais 13B | Dense Transformer |
 | `allam-7b-Q4_K_M.llamafile` | 4.7 GB | ALLaM 7B Instruct | Dense Transformer |
+| `falcon3-1b-Q4_K_M.llamafile` | 1.7 GB | Falcon3 1B Instruct | Dense Transformer |
+| `falcon3-3b-Q4_K_M.llamafile` | 2.6 GB | Falcon3 3B Instruct | Dense Transformer |
+| `falcon3-7b-Q4_K_M.llamafile` | 5.0 GB | Falcon3 7B Instruct | Dense Transformer |
 | `jais-30b-Q4_K_M.llamafile` | 27 GB | Jais Family 30B 16K | Dense Transformer |
