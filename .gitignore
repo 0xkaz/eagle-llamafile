@@ -1,0 +1,12 @@
+# llamafile バイナリ（HuggingFace に置く、GitHub には不要）
+models/*.llamafile
+
+# 作業ディレクトリ（一時ファイル）
+work/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]

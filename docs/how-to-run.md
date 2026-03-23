@@ -61,6 +61,20 @@
   --cli -p "ما هي عاصمة الإمارات؟" -n 100
 ```
 
+### Jais Family 30B 16K（30B アラビア語-英語）
+
+```bash
+# サーバーモード（CPU 専用 — Metal OOM 回避）
+./models/jais-30b-Q4_K_M.llamafile -m /zip/jais-family-30b-16k-chat.Q4_K_M.gguf -ngl 0
+
+# CLI モード
+./models/jais-30b-Q4_K_M.llamafile \
+  -m /zip/jais-family-30b-16k-chat.Q4_K_M.gguf \
+  --cli -p "What is UAE known for?" -n 100 --nothink -ngl 0
+```
+
+> **注意:** 27GB のモデルのため RAM 32GB 以上を推奨。Metal GPU は OOM のため `-ngl 0`（CPU 専用）で実行。
+
 ### ALLaM 7B Instruct（サウジアラビア製）
 
 ```bash
@@ -130,3 +144,4 @@ curl http://127.0.0.1:8080/v1/chat/completions \
 | `falcon-h1r-7b-Q4_K_M.llamafile` | 5.0 GB | Falcon-H1R 7B | Mamba-2+Transformer |
 | `jais-13b-Q4_K_M.llamafile` | 12.2 GB | Jais 13B | Dense Transformer |
 | `allam-7b-Q4_K_M.llamafile` | 4.7 GB | ALLaM 7B Instruct | Dense Transformer |
+| `jais-30b-Q4_K_M.llamafile` | 27 GB | Jais Family 30B 16K | Dense Transformer |
