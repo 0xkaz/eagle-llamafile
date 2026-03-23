@@ -61,8 +61,11 @@
       "hf_source": "core42/jais-13b-chat",
       "gguf_available": true,
       "gguf_source": "dormosh/jais-13b-GGUF",
-      "llamafile": null,
-      "status": "planned",
+      "llamafile": "models/jais-13b-Q4_K_M.llamafile",
+      "quant": "Q4_K_M",
+      "status": "done",
+      "verified_on": "2026-03-24",
+      "notes": "Q8_0からllama-quantize --allow-requantizeでQ4_K_M生成。CPU/Metal両対応（Dense Transformer）。",
       "priority": 4
     },
     {
