@@ -94,8 +94,11 @@
       "hf_source": "ALLaM-AI/ALLaM-7B-Instruct-preview",
       "gguf_available": true,
       "gguf_source": "Omartificial-Intelligence-Space/ALLaM-7B-Instruct-preview-Q4_K_M-GGUF",
-      "llamafile": null,
-      "status": "planned",
+      "llamafile": "models/allam-7b-Q4_K_M.llamafile",
+      "quant": "Q4_K_M",
+      "status": "done",
+      "verified_on": "2026-03-24",
+      "notes": "community Q4_K_M GGUFをそのまま使用。CPU/Metal両対応（Dense Transformer）。",
       "priority": 6
     }
   ]

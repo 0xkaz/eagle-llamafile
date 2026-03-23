@@ -61,6 +61,18 @@
   --cli -p "ما هي عاصمة الإمارات؟" -n 100
 ```
 
+### ALLaM 7B Instruct（サウジアラビア製）
+
+```bash
+# サーバーモード
+./models/allam-7b-Q4_K_M.llamafile -m /zip/allam-7b-instruct-preview-q4_k_m.gguf
+
+# CLI モード
+./models/allam-7b-Q4_K_M.llamafile \
+  -m /zip/allam-7b-instruct-preview-q4_k_m.gguf \
+  --cli -p "What is Saudi Arabia known for?" -n 200 --nothink
+```
+
 ---
 
 ## 重要な注意点
@@ -117,3 +129,4 @@ curl http://127.0.0.1:8080/v1/chat/completions \
 |---------|--------|--------|--------|
 | `falcon-h1r-7b-Q4_K_M.llamafile` | 5.0 GB | Falcon-H1R 7B | Mamba-2+Transformer |
 | `jais-13b-Q4_K_M.llamafile` | 12.2 GB | Jais 13B | Dense Transformer |
+| `allam-7b-Q4_K_M.llamafile` | 4.7 GB | ALLaM 7B Instruct | Dense Transformer |
