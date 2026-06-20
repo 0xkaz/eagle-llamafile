@@ -13,7 +13,7 @@ on:
         description: 'Output llamafile name (without .llamafile)'
         required: true
       hf_upload_repo:
-        description: 'HuggingFace repo to upload to (e.g. kaz321/Falcon3-llamafile)'
+        description: 'HuggingFace repo to upload to (e.g. your-username/Falcon3-llamafile)'
         required: false
 
 env:
